@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block title %}HomePage{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center display-2">Pets</h2>
+<div class="d-flex flex-wrap flex-row justify-content-start"> 
+    
+    {% for pet in pets %}
+    <div class="w-25 p-3">
+        <img src="{{pet.photo_url}}" class="img-thumbnail"  alt="">
+        {% if pet.available %}
+        <p><b>{{pet.name}}</b> is available!</p>
+        {% else %}
+        <p><b>{{pet.name}}</b> is not available!</p>
+        {% endif %}
+        <button type="button" class="btn btn-link" onclick="window.location.href='/{{pet.id}}'">
+            Visit</button>
+
+    </div>
+    {% endfor %}
+    
+
+</div>
+<button type="button" class="btn btn-primary" onclick="window.location.href='/add'">
+    Add a Pet</button>
+
+
+
+ {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block title %}Pet Information{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center display-2">Edit Pet Information</h2>
+<div class="d-flex justify-content-center">
+    <form>
+        {{ form.hidden_tag() }}
+        {% for field in form 
+            if field.widget.input_type != 'hidden' %}
+            
+            <p class="d-flex justify-content-between">
+                {{field.label}}
+                {{field}}
+                
+                {% for err in field.errors %}
+              
+                 <b>{{err}}</b>
+                {% endfor %}
+            </p>
+            {% endfor %}
+            
+            
+            <button formmethod="post" formaction="/{{pet.id}}/edit" class="btn btn-primary">
+                Edit</button>
+            <button onclick="window.location.href='/'" class="btn btn-warning">
+                Cancel</button>
+    </form> 
+    
+</div>
+
+
+
+
+
+
+{% endblock %}
